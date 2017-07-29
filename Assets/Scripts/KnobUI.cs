@@ -5,7 +5,7 @@ using UnityEngine;
 public class KnobUI : MonoBehaviour
 {
     /// <summary>
-    /// Angle around the z-axis to rotate the knob on click.
+    /// Angle around the z-axis to rotate the knob on click. 
     /// </summary>
     [SerializeField]
     private float clickRotation = 45.0f;
