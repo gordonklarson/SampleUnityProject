@@ -18,6 +18,9 @@ public class TicTacToeGame : Game
     [SerializeField]
     private Text playerTurnText;
 
+    [SerializeField]
+    private GameObject winScreen;
+
     private int[] board = new int[9] {0,0,0,
                                       0,0,0,
                                       0,0,0};
@@ -41,11 +44,6 @@ public class TicTacToeGame : Game
         {
             EventSystem.current.SetSelectedGameObject(defaultFocus, null);
         }
-    }
-
-    public override void GameOver()
-    {
-        throw new System.NotImplementedException();
     }
 
     public void OnButtonClick(int index)
@@ -148,5 +146,42 @@ public class TicTacToeGame : Game
     {
         imageEffectValue += amount;
         GameManager.Instance.GetScreenMaterial().SetFloat("_Strength", (Mathf.Cos(Mathf.Deg2Rad * imageEffectValue) + 1.0f));
+    }
+
+    public override void GameOver()
+    {
+        gameOver = true;
+        gameAssets.SetActive(false);
+        if (isPlayerTurn)
+        {
+            winScreen.SetActive(true);
+        }
+        else
+        {
+            gameOverScreen.SetActive(true);
+        }
+
+    }
+
+    public override void Reset()
+    {
+        gameOver = false;
+        winScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
+        board = new[]
+                {
+                    0, 0, 0,
+                    0, 0, 0,
+                    0, 0, 0
+                };
+
+        for (int i = 0; i < ButtonTextArray.Length; i++)
+        {
+            ButtonTextArray[i].text = "";
+        }
+
+        SetPlayerTurn(true);
+        gameAssets.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(defaultFocus, null);
     }
 }

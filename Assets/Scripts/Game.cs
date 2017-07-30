@@ -8,6 +8,15 @@ public abstract class Game : MonoBehaviour
     [SerializeField]
     protected Material screenMaterial;
 
+    [SerializeField]
+    protected GameObject gameOverScreen;
+
+    [SerializeField]
+    protected GameObject gameAssets;
+
+    [SerializeField]
+    protected GameObject gameAssetsPrefab;
+
     protected bool gameOver = false;
 
     protected float imageEffectValue = 0.0f;
@@ -15,6 +24,7 @@ public abstract class Game : MonoBehaviour
     public virtual void OnEnable()
     {
         SetupVisualEffects();
+        Reset();
     }
 
     protected virtual void SetupVisualEffects()
@@ -35,7 +45,23 @@ public abstract class Game : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public abstract void GameOver();
+    public virtual void Reset()
+    {
+        if (gameAssets != null)
+        {
+            Destroy(gameAssets);
+        }
+        gameOverScreen.SetActive(false);
+        gameAssets = Instantiate(gameAssetsPrefab, transform);
+        gameOver = false;
+    }
+
+    public virtual void GameOver()
+    {
+        gameOver = true;
+        Destroy(gameAssets);
+        gameOverScreen.SetActive(true);
+    }
 
     public abstract void SettingsKnobTurned(float updatedVal);
     

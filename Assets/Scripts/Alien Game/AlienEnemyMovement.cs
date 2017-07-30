@@ -78,5 +78,9 @@ public class AlienEnemyMovement : MonoBehaviour
                 myRigidbody.MovePosition(transform.position + Vector3.down * dropDistance);
             }
         }
+        else if (collision.collider.CompareTag("Player"))
+        {
+            GameManager.Instance.GetCurrentGame().GameOver();
+        }
     }
 }

@@ -18,15 +18,16 @@ public class JumpPlayerController : MonoBehaviour
 
     [SerializeField]
     private Sprite jump;
-
-    [SerializeField]
-    private int health = 3;
+    
 
     [SerializeField]
     private float invincibilityDuration = 2f;
 
     [SerializeField]
     private float invincibilityBlinkSpeed = 12f;
+
+    [SerializeField]
+    private JumpGame jumpGame;
 
     private SpriteRenderer mySpriteRenderer;
 
@@ -50,6 +51,11 @@ public class JumpPlayerController : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (jumpGame == null)
+        {
+            jumpGame = (JumpGame)GameManager.Instance.GetCurrentGame();
+        }
     }
 
     public void Start()
@@ -139,12 +145,8 @@ public class JumpPlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            health--;
+            jumpGame.ReduceHealth();
             StartCoroutine(InvincibleCoroutine());
-            if (health <= 0)
-            {
-                GameManager.Instance.GetCurrentGame().GameOver();
-            }
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ChannelKnobUI: MonoBehaviour
 {
@@ -12,5 +13,10 @@ public class ChannelKnobUI: MonoBehaviour
     public void OnClick(float amount)
     {
         transform.Rotate(0.0f, 0.0f, amount);
+    }
+
+    public void OnClickUp()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

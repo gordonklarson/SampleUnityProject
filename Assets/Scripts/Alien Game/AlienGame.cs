@@ -8,10 +8,6 @@ public class AlienGame : Game
     {
         GameManager.Instance.GetScreenMaterial().SetFloat("_Strength", 1.0f);
     }
-    public override void GameOver()
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void SettingsKnobTurned(float amount)
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SettingsKnobUI : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class SettingsKnobUI : MonoBehaviour
     public void OnClickUp()
     {
         buttonDown = false;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Update()

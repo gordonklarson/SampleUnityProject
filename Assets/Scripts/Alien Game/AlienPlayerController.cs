@@ -44,11 +44,11 @@ public class AlienPlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Enemy"))
-        {
-            GameManager.Instance.GetCurrentGame().GameOver();
-        }
-    }
+    //public void OnCollisionEnter2D(Collision2D otherCollision)
+    //{
+    //    if (otherCollision.collider.CompareTag("Enemy"))
+    //    {
+    //        GameManager.Instance.GetCurrentGame().GameOver();
+    //    }
+    //}
 }

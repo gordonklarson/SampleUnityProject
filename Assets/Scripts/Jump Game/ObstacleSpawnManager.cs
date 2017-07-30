@@ -32,20 +32,22 @@ public class ObstacleSpawnManager : MonoBehaviour
     private IEnumerator SpawnCoroutine()
     {
         float spawnTime;
-
+        GameObject spawnedObject;
         while (true)
         {
             spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
             if (Random.Range(0, 2) == 0)
             {
                 //Spawn traffic cone
-                Instantiate(trafficConeObstacle, trafficConeSpawnTransform.position,
-                            trafficConeSpawnTransform.rotation);
+                spawnedObject = Instantiate(trafficConeObstacle, trafficConeSpawnTransform.position,
+                                    trafficConeSpawnTransform.rotation);
+                spawnedObject.transform.parent = transform;
             }
             else
             {
                 //Spawn bird
-                Instantiate(birdObstacle, birdSpawnTransform.position, birdSpawnTransform.rotation);
+                spawnedObject = Instantiate(birdObstacle, birdSpawnTransform.position, birdSpawnTransform.rotation);
+                spawnedObject.transform.parent = transform;
             }
             yield return new WaitForSeconds(spawnTime);
         }
