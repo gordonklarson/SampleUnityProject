@@ -42,6 +42,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void SetScreenMaterial(Material material)
     {
         screenImage.material = material;
