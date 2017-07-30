@@ -8,6 +8,8 @@ TagManager:
   - ScreenBorder
   - Enemy
   - Ground
+  - Bird
+  - TrafficCone
   layers:
   - Default
   - TransparentFX

@@ -5,19 +5,24 @@ using UnityEngine;
 
 public abstract class Game : MonoBehaviour
 {
-
-    public Material screenMaterial;
+    [SerializeField]
+    protected Material screenMaterial;
 
     protected bool gameOver = false;
 
-    public void OnEnable()
+    protected float imageEffectValue = 0.0f;
+    
+    public virtual void OnEnable()
     {
         SetupVisualEffects();
     }
 
     protected virtual void SetupVisualEffects()
     {
-        GameManager.Instance.SetScreenMaterial(screenMaterial);
+        if (screenMaterial != null)
+        {
+            GameManager.Instance.SetScreenMaterial(screenMaterial);
+        }
     }
 
     public virtual void EnableGame()
@@ -30,7 +35,8 @@ public abstract class Game : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    protected abstract void OnGameOver();
+    public abstract void GameOver();
 
-    public abstract void SettingsKnobTurned(float amount);
+    public abstract void SettingsKnobTurned(float updatedVal);
+    
 }

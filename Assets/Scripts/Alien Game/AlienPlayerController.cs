@@ -48,7 +48,7 @@ public class AlienPlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            //GameOver;
+            GameManager.Instance.GetCurrentGame().GameOver();
         }
     }
 }

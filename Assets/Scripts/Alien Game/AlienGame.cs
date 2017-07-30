@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class AlienGame : Game
 {
-    protected override void OnGameOver()
+    public void Awake()
+    {
+        GameManager.Instance.GetScreenMaterial().SetFloat("_Strength", 1.0f);
+    }
+    public override void GameOver()
     {
         throw new System.NotImplementedException();
     }
 
     public override void SettingsKnobTurned(float amount)
     {
-        throw new System.NotImplementedException();
+        imageEffectValue += amount;
+        GameManager.Instance.GetScreenMaterial().SetFloat("_Strength", (Mathf.Cos(Mathf.Deg2Rad * imageEffectValue) + 1.0f) / 2.0f);
     }
 }

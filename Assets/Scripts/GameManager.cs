@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Game[] games;
-
+    
     /// <summary>
     /// The channel determines what game is currently being played.
     /// </summary>
@@ -47,10 +47,25 @@ public class GameManager : MonoBehaviour
         screenImage.material = material;
     }
 
+    public Material GetScreenMaterial()
+    {
+        return screenImage.material;
+    }
+
+    public Game GetCurrentGame()
+    {
+        return games[channel];
+    }
+
     public void ChannelKnobClicked()
     {
         games[channel].DisableGame();
         channel = (channel + 1) % games.Length;
         games[channel].EnableGame();
+    }
+
+    public void SettingsKnobClicked(float amount)
+    {
+        games[channel].SettingsKnobTurned(amount);
     }
 }
