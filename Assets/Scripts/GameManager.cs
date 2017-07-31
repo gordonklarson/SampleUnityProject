@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private RawImage screenImage;
 
+    /// <summary>
+    /// Parent scene objects for each minigame
+    /// </summary>
     [SerializeField]
     private Game[] games;
     
@@ -50,16 +53,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Set the material used by the "TV Screen" scene object
+    /// </summary>
+    /// <param name="material"></param>
     public void SetScreenMaterial(Material material)
     {
         screenImage.material = material;
     }
 
+    /// <summary>
+    /// Get the material currently used by the "TV Screen" scene object
+    /// </summary>
+    /// <returns></returns>
     public Material GetScreenMaterial()
     {
         return screenImage.material;
     }
 
+    /// <summary>
+    /// Get the currently active minigame
+    /// </summary>
+    /// <returns>The Game object that is currently active</returns>
     public Game GetCurrentGame()
     {
         return games[channel];

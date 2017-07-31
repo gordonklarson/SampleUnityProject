@@ -6,24 +6,47 @@ using Random = UnityEngine.Random;
 
 public class TicTacToeGame : Game
 {
+    /// <summary>
+    /// UI object to set default focus to.
+    /// </summary>
     [SerializeField]
     private GameObject defaultFocus;
 
+    /// <summary>
+    /// Array of Button objects representing the grid
+    /// </summary>
     [SerializeField]
     private Button[] buttons;
 
+    /// <summary>
+    /// Array of Text objects overlayed over each grid button
+    /// </summary>
     [SerializeField]
     private Text[] ButtonTextArray;
 
+    /// <summary>
+    /// UI text displaying who's turn it currently is.
+    /// </summary>
     [SerializeField]
     private Text playerTurnText;
 
+
+    /// <summary>
+    /// Object to activate when the human player  wins the game.
+    /// </summary>
     [SerializeField]
     private GameObject winScreen;
 
+    /// <summary>
+    /// Array representing the board state. 0 = empty grid, 1 = 'X', 2 = 'O'
+    /// </summary>
     private int[] board = new int[9] {0,0,0,
                                       0,0,0,
                                       0,0,0};
+
+    /// <summary>
+    /// Is it currently the human player's turn
+    /// </summary>
     private bool isPlayerTurn = true;
 
     public override void OnEnable()
@@ -46,6 +69,10 @@ public class TicTacToeGame : Game
         }
     }
 
+    /// <summary>
+    /// Called when the player selects a grid
+    /// </summary>
+    /// <param name="index">Index of the grid selected by the player</param>
     public void OnButtonClick(int index)
     {
         if (board[index] == 0)
@@ -63,6 +90,10 @@ public class TicTacToeGame : Game
         }
     }
 
+    /// <summary>
+    /// Process the computer controlled players turn.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CPUTurn()
     {
         bool choiceMade = false;
@@ -90,6 +121,10 @@ public class TicTacToeGame : Game
         }
     }
 
+    /// <summary>
+    /// Set whether it is currently the human player's turn or not.
+    /// </summary>
+    /// <param name="switchToPlayer">True if it is the human player's turn, false otherwise.</param>
     private void SetPlayerTurn(bool switchToPlayer)
     {
         isPlayerTurn = switchToPlayer;
@@ -106,6 +141,10 @@ public class TicTacToeGame : Game
         EventSystem.current.SetSelectedGameObject(defaultFocus, null);
     }
 
+    /// <summary>
+    /// Check if a player has won the game
+    /// </summary>
+    /// <returns>true if the game has been won, false otherwise</returns>
     private bool CheckForWin()
     {
         bool win = false;
