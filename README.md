@@ -1,5 +1,5 @@
 # SampleUnityProject
-This is a suite of very simple minigames developed as a very broad example of my capabilites in building a Unity project in under 6 hours. Please excuse the programmer art.
+This is a suite of very simple minigames developed as a code sample and personal challenge in building a Unity project from start to finish in under 6 hours. Please excuse the programmer art.
 
 Controls:
 Controls vary based on the current active minigame.
